@@ -1,0 +1,83 @@
+body {
+    background: #172a3a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #004346, #09bc8a); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #004346, #09bc8a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	font-family: Hack, monospace;
+    background-color: #000000;
+	
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h3 {
+    color: #ffffff;
+}
+.col-md-3 {
+    background-color: #172a3a;
+    font-family: 'Inconsolata', monospace;
+    font-size: 16px;
+    color: #ffffff;
+    border-radius: 15px;
+    padding: 15px;
+	box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.col-12 {
+    padding: 0px;
+}
+.list-group-item {
+    background-color: inherit;
+    text-decoration: none;
+    color: #09bc8a;
+    padding: 2px;
+    border: 0px;
+}
+.list-group-item a:link {
+    text-decoration: none;
+    color: #75dddd;
+}
+.list-group-item a:hover {
+    text-decoration: none;
+    color: #004346;
+}
+.list-group-item a:visited{
+    text-decoration: none;
+    color: #75dddd;
+}
+.list-group-item a:visited:hover{
+    text-decoration: none;
+    color: #004346;
+}
+
+li:before {
+  content: "> ";
+}
+
+.terminal-text {
+    outline: none;
+   border: none;
+   background-color: #004346;
+   box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+}
+.terminal-text:focus {
+    outline: none;
+    border: none;
+    background-color: #75dddd;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.ui-autocomplete {
+    z-index: 999999;
+    background-color: #4F4F4F;
+    width: 1rem;
+    border-radius: 15px;
+    margin-top: 5px;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+

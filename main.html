@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hack-font/3.003/web/hack.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css" />
+    <title>[Startpage]</title>
+  </head>
+  <body>
+      <div class="container">
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center">welcome back</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <input class="terminal-text form-control form-control-lg" type="text" placeholder="*~ search away ~*">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <p>Social</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="https://facebook.com">Facebook</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com">Twitter</a></li>
+                    <li class="list-group-item"><a href="http://reddit.com">Reddit</a></li>
+                    <li class="list-group-item"><a href="http://tumblr.com">Tumblr</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 ml-auto">
+                <p>School</p>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><a href="https://outlook.office.com/mail/inbox">Outlook</a></li>
+                    <li class="list-group-item"><a href="https://blackboard.irsc.edu/webapps/portal/execute/tabs/tabAction?tab_tab_group_id=_1_1">Blackboard</a></li>
+                    <li class="list-group-item"><a href="https://irsc.okta.com/login/login.htm?fromURI=%2Fapp%2FUserHome">OKTA</a></li>
+					<li class="list-group-item"><a href="https://www.irsc.edu/index.html">IRSC</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 ml-auto">
+                <p>Entertainment</p>
+                    <li class="list-group-item"><a href="https://www.netflix.com">Netflix</a></li>
+                    <li class="list-group-item"><a href="https://hulu.com">Hulu</a></li>
+                    <li class="list-group-item"><a href="https://youtube.com">Youtube</a></li>
+                    <li class="list-group-item"><a href="https://www.amazon.com/Prime-Video/b?ie=UTF8&node=2676882011">Prime Video</a></li>
+            </div>
+        </div>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script>
+        $(document).keypress(function(e) {
+            if(e.which == 13) {
+                window.location.href = "https://www.google.co.uk/search?q=" + encodeURIComponent($('.terminal-text').val());
+            }
+        });
+        $( function() {
+            function split( val ) {
+              return val.split( /,\s*/ );
+            }
+            function extractLast( term ) {
+              return split( term ).pop();
+            }
+            $( ".terminal-text" )
+                .on( "keydown", function( event ) {
+                    if ( event.keyCode === $.ui.keyCode.TAB &&
+                        $( this ).autocomplete( "instance" ).menu.active ) {
+                            event.preventDefault();
+                    }
+                })
+                .autocomplete({
+                source: "",
+                source: function( request, response ) {
+                    $.getJSON( "https://gitlab.XXXXXXXX.co.uk/api/v4/groups/2/search", {
+                        search: extractLast( request.term ),
+                        scope: 'projects',
+                        private_token: 'XXXXXXXXXXXXXXXX'
+                    }, response );
+                },
+            })
+            .autocomplete( "instance" )._renderItem = function( ul, item ) {
+                return $( "<li class='list-group-item'>" )
+                    .append( "<a href='" + item.web_url + "'>" + item.name_with_namespace + "</a>" )
+                    .appendTo( ul );
+            };
+        });
+    </script>
+  </body>
+</html>
